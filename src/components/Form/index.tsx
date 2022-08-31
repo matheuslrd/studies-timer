@@ -1,15 +1,24 @@
 import React from 'react';
 import Button from '../Button';
+import { ITarefa } from '../List';
 import style from './form.module.scss';
 
-class Form extends React.Component {
+export type TFormProps = {
+  setTarefas: React.Dispatch<React.SetStateAction<ITarefa[]>>;
+};
+
+class Form extends React.Component<TFormProps> {
   state = {
     time: '00:00',
     name: '',
   };
 
   adicionarTarefa = (event: React.FormEvent) => {
+    const { setTarefas } = this.props;
+    const { state } = this;
+
     event.preventDefault();
+    setTarefas((tarefasAnteriores) => [...tarefasAnteriores, state]);
   };
 
   render(): React.ReactNode {
@@ -47,7 +56,7 @@ class Form extends React.Component {
           </label>
         </div>
 
-        <Button>Adicionar</Button>
+        <Button type="submit">Adicionar</Button>
       </form>
     );
   }
