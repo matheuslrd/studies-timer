@@ -4,6 +4,9 @@ import Item from './components/Item';
 export interface ITarefa {
   time: string;
   name: string;
+  selecionado: boolean;
+  completado: boolean;
+  id: string;
 }
 
 function List({ tarefas }: { tarefas: ITarefa[] }) {

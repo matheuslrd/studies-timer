@@ -1,4 +1,6 @@
 import React from 'react';
+import { v4 as uuidV4 } from 'uuid';
+
 import Button from '../Button';
 import { ITarefa } from '../List';
 import style from './form.module.scss';
@@ -17,8 +19,16 @@ class Form extends React.Component<TFormProps> {
     const { setTarefas } = this.props;
     const { state } = this;
 
+    const novaTarefa = {
+      ...state,
+      completado: false,
+      selecionado: false,
+      id: uuidV4(),
+    };
+
     event.preventDefault();
-    setTarefas((tarefasAnteriores) => [...tarefasAnteriores, state]);
+    setTarefas((tarefasAnteriores) => [...tarefasAnteriores, novaTarefa]);
+    this.setState({ name: '', time: '00:00' });
   };
 
   render(): React.ReactNode {
