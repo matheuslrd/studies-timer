@@ -9,14 +9,19 @@ export interface ITarefa {
   id: string;
 }
 
-function List({ tarefas }: { tarefas: ITarefa[] }) {
+export interface IList {
+  tarefas: ITarefa[];
+  selecionaTarefa: (tarefaSelecionada: ITarefa) => void;
+}
+
+function List({ tarefas, selecionaTarefa }: IList) {
   return (
     <aside className={style.listaTarefas}>
       <h2>Estudos do dia</h2>
 
       <ul>
         {tarefas.map((item) => (
-          <Item name={item.name} time={item.time} key={item.name} />
+          <Item {...item} key={item.id} selecionaTarefa={selecionaTarefa} />
         ))}
       </ul>
     </aside>
