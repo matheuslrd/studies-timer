@@ -1,4 +1,4 @@
-import style from '../list.module.scss';
+import style from './Item.module.scss';
 import { ITarefa } from '../index';
 
 interface IItem extends ITarefa {
